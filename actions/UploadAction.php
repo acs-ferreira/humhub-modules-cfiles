@@ -16,13 +16,6 @@ use Yii;
 use yii\web\UploadedFile;
 
 /**
- * Created by PhpStorm.
- * User: buddha
- * Date: 17.08.2017
- * Time: 18:25
- */
-
-/**
  * Class UploadAction
  *
  */
@@ -46,11 +39,11 @@ class UploadAction extends \humhub\modules\file\actions\UploadAction
 
         $file = $folder->addUploadedFile($uploadedFile, Yii::$app->getModule('cfiles')->getUploadBehaviour());
 
-        if($file->hasErrors()) {
+        if ($file->hasErrors()) {
             return $this->getValidationErrorResponse($file);
         }
 
-        if($file->baseFile->hasErrors()) {
+        if ($file->baseFile->hasErrors()) {
             return $this->getErrorResponse($file->baseFile);
         }
 
@@ -61,7 +54,7 @@ class UploadAction extends \humhub\modules\file\actions\UploadAction
     {
         $errorMessage = Yii::t('FileModule.actions_UploadAction', 'File {fileName} could not be uploaded!', ['fileName' => $file->baseFile->name]);
 
-        if(!empty($file->hasErrors())) {
+        if (!empty($file->hasErrors())) {
             $errorMessage = array_values($file->getErrors())[0];
         }
 
